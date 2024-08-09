@@ -1,0 +1,49 @@
+function [x_mc] = SLICK_simulation(Y_0, dt, Nf, M_n, G, it0, nt, k_max)
+
+
+
+q            =       ones((Nf)*M_n*2,1);
+w1           =       zeros(2*(Nf)*M_n,1);
+g            =       [zeros((Nf)*M_n,(Nf)*2*M_n);zeros((Nf)*M_n) G ];
+x_mc         =       zeros(k_max,2*(Nf)*M_n,nt+1);
+seed         =       156000;
+
+
+
+for k=1:k_max
+    
+    disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+    disp(['k = ' num2str(k)])
+    
+    x0=zeros((Nf)*M_n*2,nt+1);
+    
+%     it0 = 200+nDFT/2;
+    
+    x0(:,1)= Y_0(:,it0+t_start);
+    
+    
+    for it=1:nt
+        
+        if mod(it,100)==0
+            disp([' it= ' num2str(it) ', t=' num2str(it*dt)])
+        end
+        
+        for j=1:1:2*(Nf)*M_n
+            [ n1, seed ] = r8_normal_01 ( seed );
+            w1(j) = n1 * sqrt ( 1 / (dt) *q(j));
+        end
+        
+        x0(:,it+1)=x0(:,it)+(K_y*x0(:,it)  + 1* g*w1)*(dt);
+        
+        
+    end
+    
+    x_mc(k,:,:)         =    x0;
+    
+    seed  = roundn(1e5*rand +1e4*rand+1e3*rand+1e2*rand,0);
+    
+end
+
+
+end
+
