@@ -1,8 +1,7 @@
 # The Stochastic Low-dimensional Inflated Convolutional Koopman model (SLICK)
 
 The complex and chaotic dynamics, coupled with a wide range of length and time scales, remain an open challenge for the reduced-order modeling of turbulent flows.
-Despite the understanding of the Navier-Stokes equations and the availability of accurate high-fidelity methods to solve them, real-time prediction of turbulent flows remains elusive across various fields, primarily due to their immense computational costs.
-Available applications, therefore, have often been demonstrated using simplified dynamical systems, such as the Ginzburg-Landau equation and the Lorenz system, or canonical problems like cylinder wakes. This work aims to develop a reduced-order model (ROM) applicable to real-world data.
+Despite the understanding of the Navier-Stokes equations and the availability of accurate high-fidelity methods to solve them, real-time prediction of turbulent flows remains elusive across various fields, primarily due to their immense computational costs. This work aims to develop a reduced-order model (ROM) applicable to real-world data.
 
 # Model-order reduction
 
