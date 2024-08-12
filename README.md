@@ -4,4 +4,7 @@
 ![Alt text](Modal analysis schematic.png)
 
 
-![Alt text](https://github.com/tic173/SLICK/blob/main/Koopman_SPOD_schematic.pdf)
+![Alt text](Koopman_SPOD_schematic.pdf)
+
+
+![Alt text](SCGL_nonlinear_correlated_full.pdf)
