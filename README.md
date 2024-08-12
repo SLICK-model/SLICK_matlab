@@ -17,7 +17,11 @@ We categorize the approaches for identifying flow instabilities using three pers
 Note that all the methods here are applied to analyze general nonlinear fluid flows. The terminology 'linear,' 'forced linear,' and 'nonlinear' pertains to the state vector under analysis.
 
 ## Spectral proper orthogonal decomposition (SPOD)
-SPOD identifies large coherent structures in stationary flows. Analogous to POD, SPOD is computed as the eigendecomposition of the cross-spectral density tensor and decomposes the flow into energy-ranked structures that evolve coherently in both space and time. Besides optimally accounting for the second-order statistics, SPOD modes are also dynamically significant as they are optimally averaged ensemble dynamical mode decomposition (DMD) modes and are formally equivalent to the spectral expansion of the stochastic Koopman operator. The SPOD expansion coefficients, $\mathbf{a}$, can be alternatively viewed as time-delay observables of the flow states, specifically through the Fourier convolution. This perspective can be understood from the inherent relationship between the Hankel singular vectors and SPOD modes. Based on these properties, our proposed model uses a finite-dimensional approximation of the linear Koopman operator to propagate the convolutional coordinates of SPOD in time.
+SPOD identifies large coherent structures in stationary flows. Analogous to POD, SPOD is computed as the eigendecomposition of the cross-spectral density tensor and decomposes the flow into energy-ranked structures that evolve coherently in both space and time. 
+
+   * User guide [here](https://www.mathworks.com/matlabcentral/fileexchange/65683-spectral-proper-orthogonal-decomposition-spod)
+ 
+Besides optimally accounting for the second-order statistics, SPOD modes are also dynamically significant as they are optimally averaged ensemble dynamical mode decomposition (DMD) modes and are formally equivalent to the spectral expansion of the stochastic Koopman operator. The SPOD expansion coefficients, $\mathbf{a}$, can be alternatively viewed as time-delay observables of the flow states, specifically through the Fourier convolution. This perspective can be understood from the inherent relationship between the Hankel singular vectors and SPOD modes. Based on these properties, our proposed model uses a finite-dimensional approximation of the linear Koopman operator to propagate the convolutional coordinates of SPOD in time.
 
 # SLICK
 
