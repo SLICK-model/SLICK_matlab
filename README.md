@@ -4,7 +4,7 @@
 ![Alt text](Modal analysis schematic.png)
 
 
-![Alt text](Koopman_SPOD_schematic.pdf)
+![SLICK overview](Koopman_SPOD_schematic.pdf)
 
 
-![Alt text](SCGL_nonlinear_correlated_full.pdf)
+![SCGL overview](SCGL_nonlinear_correlated_full.pdf)
