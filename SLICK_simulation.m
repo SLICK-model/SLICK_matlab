@@ -22,9 +22,6 @@ function [Y_mc] = SLICK_simulation(K_y, G, y0, dt, Nf, M_n, nt, k_max)
 %         Y_mc:  Inflated state vectors for all the simulations with size k_max*(2*Nf*M_n)*(nt+1)
 
 
-
-
-
 %%
 
 w1           =       zeros(2*(Nf)*M_n,1);
@@ -37,27 +34,22 @@ for k = 1:k_max
     
     disp('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
     disp(['k = ' num2str(k)])
-    
-    Y0       =   zeros((Nf)*M_n*2,nt+1);
-    
-    Y0(:,1)  =   y0;
-    
+ 
+    Y0       =   zeros((Nf)*M_n*2,nt+1);    
+    Y0(:,1)  =   y0;  
     
     for it = 1:nt
         
         if mod(it,100)==0
             disp([' it= ' num2str(it) ', t=' num2str(it*dt)])
         end
-        
         rng(seed);
         
         for j=1:1:2*(Nf)*M_n
             [ n1, seed ] = r8_normal_01 ( seed );
             w1(j) = n1 * sqrt ( 1 / (dt));
         end
-          
          Y0(:,it+1)=Y0(:,it)+(K_y*Y0(:,it)  + 1* g*w1)*(dt);
-           
         
     end
     

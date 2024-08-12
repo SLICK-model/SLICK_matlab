@@ -1,7 +1,6 @@
 function [K_y,G,Y_0] = SLICK(A, dt, nt_train, gamma1, gamma2, t_remove, shift, varargin )
 
-%%  
-
+%%  Stochastic Low-dimensional Inflated Convolutional Koopman model (SLICK)  
 
 %       Inputs:  
 %
@@ -12,26 +11,22 @@ function [K_y,G,Y_0] = SLICK(A, dt, nt_train, gamma1, gamma2, t_remove, shift, v
 %     t_remove:  Removal of the first few snapshots; not necessary
 %        shift:  Starting point of the training set
 
-
 %      Outputs:  
 %
 %          K_y:  Inflated Koopman operator
 %            G:  De-whitening filter
 %          Y_0:  All the inflated state vectors
 
-
-
 % Reference:
-%        [1] T. Chu, O. T. Schmidt, A stochastic SPOD-Koopman two-level
-%        model for turbulent flows.      (Under preparation)
+%        [1] T. Chu, O. T. Schmidt, Spectral reduced-order modeling of 
+%        turbulent flows.      (Under preparation)
 %        [2] T. Chu, O. T. Schmidt, A stochastic SPOD-Galerkin model for
 %        broadband turbulent flows. Theoretical and Computational Fluid
 %        Dynamics 35, no. 6 (2021): 759-782.
 
 
-
 % T. Chu (tchu72@gatech.edu), O. T. Schmidt (oschmidt@ucsd.edu)
-% Last revision:  02-Apr-2024 Tianyi Chu <tchu72@gatech.edu>
+% Last revision:  12-Aug-2024 Tianyi Chu <tchu72@gatech.edu>
 
 
 %%
@@ -73,14 +68,10 @@ end
  
  %% temporal derivatives
     
-    
     B          =   zeros(M_n*(Nf),nt);
     dbdt       =   zeros(M_n*(Nf),nt);
     dadt       =   zeros(M_n*(Nf),nt);
-    
-    
     A_1        =  reshape(permute(A,[2 1 3]),[],size(A,3));
-    
     
     for it=1:nt
         disp(['computing B from data at time step ' num2str(it) '/' num2str(nt)])
@@ -98,24 +89,18 @@ end
         end
     end
     
-  
-
  %%  Inflated Koopman approach. Eqns(3.1-3.4)
 
  
  e_L                 =   size(X,2)-t_remove-1;         % Size of the actual training set after removal
  
- 
  Y_0                 =   [A_1(:,(1:nt-t_remove)+t_remove); B(:,(1:nt-t_remove)+t_remove)]; 
  Y_1                 =   Y_0(:,(1:e_L)+shift);
  Y_2                 =   Y_0(:,(1:e_L)+shift+1);
-
     
  M                   =   dbdt(:,(1:e_L)+t_remove+shift )* (Y_1'/(Y_1*Y_1'+gamma2*speye((Nf)*M_n*2) ) );
  
  K_y                 =   [K1  eye(length(K1)); M];     % Inflated Koopman operator
- 
- 
  
  %% De-whitening filetr constructions, Eqns(3.5-3.12)
  
@@ -127,8 +112,6 @@ end
  R_rr                =   P_y2-T*P_y1*T';
  R_rr                =   (R_rr+R_rr')/2;
  R_rr                =   R_rr((Nf)*M_n+1:end,(Nf)*M_n+1:end );
-
-    
  
 [R_v,R_d]            =   eig(R_rr/dt );
 R_d                  =   diag(R_d);
@@ -138,10 +121,7 @@ R_d_s1               =   sum(R_d);
 R_d(idx_R2)          =   0;
 R_d(idx_R1)          =   R_d(idx_R1) / sum(R_d(idx_R1)) *(R_d_s1 );
 
-
 G                    =   R_v(:,:)*diag(sqrt(R_d));   % de-whitening filter
     
-
-
 end
 
