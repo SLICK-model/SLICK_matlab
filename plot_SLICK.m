@@ -7,7 +7,6 @@
 
 mj                   =   zeros ( 2*(Nf)*M_n, 200 + 1);
 mj(:,1)              =   y0;
-
 Pj                   =   zeros(2*(Nf)*M_n, 2*(Nf)*M_n ,1200+1);
 pj                   =   zeros( 2*(Nf)*M_n  ,200+1);
 
@@ -27,7 +26,6 @@ for it=1:200
 end
 
 [A_upper]        =      invtcoeffs( permute(reshape((mj(1:(Nf)*M_n,(1:200))+2*pj(1:Nf*M_n,1:200)),M_n,Nf,[]),[2 1 3]),window,'firsthalf','complex');
-
 [A_lower]        =      invtcoeffs( permute(reshape((mj(1:(Nf)*M_n,(1:200))-2*pj(1:Nf*M_n,1:200)),M_n,Nf,[]),[2 1 3]),window,'firsthalf','complex');
 
 
@@ -121,7 +119,6 @@ end
 %%
 
    q0  = (Psi_1*A_data(:,1:400));
-
    q1  = (Psi_1*squeeze(A_model(:,1:400,2)));
 
 
