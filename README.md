@@ -2,3 +2,6 @@
 
 
 ![Alt text](Modal analysis schematic.png)
+
+
+![Alt text](Koopman_SPOD_schematic.pdf)
