@@ -31,3 +31,7 @@ While the model encompasses complex concepts, it can be formulated using a simpl
 ## Stochastic complex Ginzburg-Landau equation
 
 ![SCGL overview](SCGL_nonlinear_correlated_full.png)
+
+Here, we consider the SCGL equation, which is widely used as a model to study instabilities in spatially evolving flows.
+
+
