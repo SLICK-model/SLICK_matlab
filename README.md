@@ -39,6 +39,6 @@ While the model encompasses complex concepts, it can be formulated using a simpl
 
 ![SCGL overview](SCGL_nonlinear_correlated_full.png)
 
-Here, we consider the SCGL equation, which is widely used as a model to study instabilities in spatially evolving flows.
+Here, we consider the SCGL equation, which is widely used as a model to study instabilities in spatially evolving flows. The forecast ability of the model is demonstrated in the prediction of the dominant flow pattern.
 
 
