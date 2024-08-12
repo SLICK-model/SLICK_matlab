@@ -1,7 +1,7 @@
 ## The Stochastic Low-dimensional Inflated Convolutional Koopman model (SLICK)
 
 
-![Alt text](Modal analysis schematic.png)
+![Alt text](Modal_analysis_schematic.png)
 
 
 ![SLICK overview](Koopman_SPOD_schematic.pdf)
