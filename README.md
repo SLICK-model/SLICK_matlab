@@ -19,8 +19,18 @@ __Spectral proper orthogonal decomposition (SPOD)__:
 SPOD identifies large coherent structures in stationary flows. Analogous to POD, SPOD is computed as the eigendecomposition of the cross-spectral density tensor and decomposes the flow into energy-ranked structures that evolve coherently in both space and time. 
 
    * User guide [here](https://www.mathworks.com/matlabcentral/fileexchange/65683-spectral-proper-orthogonal-decomposition-spod)
- 
-Besides optimally accounting for the second-order statistics, SPOD modes are also dynamically significant as they are optimally averaged ensemble dynamical mode decomposition (DMD) modes and are formally equivalent to the spectral expansion of the stochastic Koopman operator. The SPOD expansion coefficients, $\mathbf{a}$, can be alternatively viewed as time-delay observables of the flow states, specifically through the Fourier convolution. This perspective can be understood from the inherent relationship between the Hankel singular vectors and SPOD modes. Based on these properties, our proposed model uses a finite-dimensional approximation of the linear Koopman operator to propagate the convolutional coordinates of SPOD in time.
+     
+SPOD modes are chosen as the modal basis due to their advantageous properties:
+
+* Optimality, convergence and space-time coherence: see [Schmidt & Colonius (2020, AIAA J.)](https://doi.org/10.2514/1.J058809) for more details. 
+* Relation to Koopman theory:
+     *   SPOD modes are dynamically significant as they are optimally averaged ensemble dynamical mode decomposition (DMD) modes ([Towne et al. 2018, JFM](https://doi.org/10.1017/jfm.2018.283)).
+     *   SPOD is formally equivalent to the spectral expansion of the stochastic Koopman operator ([Arbabi & Sapsis 2022, SIAM](https://doi.org/10.1137/20M1359833)). 
+* Relation to time-delay embedding: 
+     * The discrete time-continuous SPOD expansion coefficients, $\mathbf{a}$, obtained using the convolution-based approach ([Nekkanti & Schmidt 2021, JFM](https://doi.org/10.1017/jfm.2021.681)) can be alternatively viewed as time-delay observables of the flow states, specifically through the Fourier convolution. 
+     * Hankel singular vectors converge to space-only POD modes in the short-time limit and to SPOD modes in the long-time limit ([Frame & Towne 2023, Plos One](https://doi.org/10.1371/journal.pone.0289637)).
+
+Based on these properties, our proposed model uses a finite-dimensional approximation of the linear Koopman operator to propagate the convolutional coordinates of SPOD in time.
 
 ## SLICK
 
