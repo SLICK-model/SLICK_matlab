@@ -54,7 +54,7 @@ While the model encompasses complex concepts, it can be formulated using a simpl
 | `SLICK_simulation.m` | Generate surrogate data via stochastic integration |
 | `plot_SLICK.m`       | Plot the SLICK outputs                   |
 | `spod.m`             | Spectral proper orthogonal decomposition |
-| `spod_check.m`       | Check the SPOD eigenvalues for the surrogate flow fields |
+| `spod_check.m`       | Check the SPOD spectrum for the surrogate flow fields |
 | `tcoeffs.m`          | Time-continuous expansion coefficients via convolution |
 | `invtcoeffs.m`       | Inversion of SPOD using time-continuous expansion coefficients |
 | `data_SCGL_nonlinear_correlatedforcing.mat` | Data of stochastic nonlinear complex Ginzburg-Landau equation forced by correlated noise |
