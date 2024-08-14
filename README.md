@@ -67,7 +67,7 @@ While the model encompasses complex concepts, it can be formulated using a simpl
 
 ![SCGL overview](SCGL_nonlinear_correlated_full.png)
 
-Here, we consider the SCGL equation, which is widely used as a model to study instabilities in spatially evolving flows. An overview of the SCGL data is shown above.
+The SCGL equation is widely used as a model to study instabilities in spatially evolving flows. An overview of the SCGL database is shown above.
 Time domain representation in the left column shows temporal evolution for full data in (a), rank $2\times 32$ data in (c), and energy in (e). Frequency domain representation in the right column shows the first three SPOD eigenvalue spectra in (b), weighted leading SPOD modes $\sqrt{\overline{\|q\|}\lambda(\omega)} \psi(x;\omega)$ in (d), and the modal percentage energy accounted by each mode in (f) as functions of frequency. The forecast ability of the model is demonstrated in the prediction of the dominant flow pattern.
 
 
