@@ -50,12 +50,15 @@ While the model encompasses complex concepts, it can be formulated using a simpl
 
 | Files                | Description      |               
 | :---:                |     :---:        |    
-| `SLICK.m`            |                   | 
+| `SLICK.m`            | Stochastic Low-dimensional Inflated Convolutional Koopman model for the convolutional coordinates        | 
+| `SLICK_simulation.m` | Generate surrogate data via stochastic integration |
+| `plot_SLICK.m`       | Plot the SLICK outputs                   |
 | `spod.m`             | Spectral proper orthogonal decomposition |
 | `tcoeffs.m`          | Time-continuous expansion coefficients via convolution |
 | `invtcoeffs.m`       | Inversion of SPOD using time-continuous expansion coefficients |
-| 'data_SCGL_nonlinear'_correlatedforcing.mat' | Stochastic nonlinear complex Ginzburg-Landau equation forced by correlated noise |
-| 
+| `data_SCGL_nonlinear_correlatedforcing.mat` | Data of stochastic nonlinear complex Ginzburg-Landau equation forced by correlated noise |
+| `plot_overview`      | Plot the overview of the SCGL database|
+
 
 
 
