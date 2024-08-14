@@ -58,6 +58,7 @@ While the model encompasses complex concepts, it can be formulated using a simpl
 | `invtcoeffs.m`       | Inversion of SPOD using time-continuous expansion coefficients |
 | `data_SCGL_nonlinear_correlatedforcing.mat` | Data of stochastic nonlinear complex Ginzburg-Landau equation forced by correlated noise |
 | `plot_overview.m`    | Plot the overview of the SCGL database|
+| `SCGL_SLICK.m`       | Run SLICK for the SCGL database|
 
 
 
