@@ -2,8 +2,8 @@
 
 
 % Reference:
-%        [1] T. Chu, O. T. Schmidt, Spectral reduced-order modeling of turbulent
-%            flows.      (Under preparation)
+%        [1] T. Chu, O. T. Schmidt, Stochastic reduced-order Koopman model 
+%        for turbulent flows.      (Under preparation)
 
 
 % T. Chu (tchu72@gatech.edu; tic173@ucsd.edu), O. T. Schmidt (oschmidt@ucsd.edu)

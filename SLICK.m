@@ -18,8 +18,8 @@ function [K_y,G,Y_0] = SLICK(A, dt, nt_train, gamma1, gamma2, t_remove, shift, v
 %          Y_0:  All the inflated state vectors
 
 % Reference:
-%        [1] T. Chu, O. T. Schmidt, Spectral reduced-order modeling of 
-%        turbulent flows.      (Under preparation)
+%        [1] T. Chu, O. T. Schmidt, Stochastic reduced-order Koopman model 
+%        for turbulent flows.      (Under preparation)
 %        [2] T. Chu, O. T. Schmidt, A stochastic SPOD-Galerkin model for
 %        broadband turbulent flows. Theoretical and Computational Fluid
 %        Dynamics 35, no. 6 (2021): 759-782.

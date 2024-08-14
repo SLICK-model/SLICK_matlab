@@ -13,11 +13,13 @@ function [a] = tcoeffs(X,P,window,weight,nModes)
 %     [1] A. Nekkanti, O. T. Schmidt, Frequency-time analysis, low-rank
 %         reconstruction and denoising of turbulent flows using SPOD,
 %         Journal of Fluid Mechanics 926, A26, 2021
+%     [2] T. Chu, O. T. Schmidt, Stochastic reduced-order Koopman model 
+%        for turbulent flows.      (Under preparation)
 %
 % A. Nekkanti (aknekkan@eng.ucsd.edu), O. T. Schmidt (oschmidt@ucsd.edu)
 % Previous revision: 7-Oct-2022 Brandon Yeung <byeung@ucsd.edu>
 
-% Last revision:     04-Aug-2023 Tianyi Chu <tchu72@gatech.edu; tic173@eng.ucsd.edu>
+% Last revision:     14-Aug-2023 Tianyi Chu <tchu72@gatech.edu; tic173@eng.ucsd.edu>
 
 % Calculate the inner product between the data matrix X and the SPOD modes 
 % in advance. Compute the temporal expansion coefficients for a specific 
