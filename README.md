@@ -45,6 +45,21 @@ A graphical summary of the stochastic low-dimensional inflated convolutional Koo
 The turbulent open cavity flow is demonstrated as an example. 
 While the model encompasses complex concepts, it can be formulated using a simple discrete-time algorithm.
 
+
+## Files 
+
+| Files                | Description      |               
+| :---:                |     :---:        |    
+| `SLICK.m`            |                   | 
+| `spod.m`             | Spectral proper orthogonal decomposition |
+| `tcoeffs.m`          | Time-continuous expansion coefficients via convolution |
+| `invtcoeffs.m`       | Inversion of SPOD using time-continuous expansion coefficients |
+| 'data_SCGL_nonlinear'_correlatedforcing.mat' | Stochastic nonlinear complex Ginzburg-Landau equation forced by correlated noise |
+| 
+
+
+
+
 ## Stochastic complex Ginzburg-Landau equation
 
 ![SCGL overview](SCGL_nonlinear_correlated_full.png)
