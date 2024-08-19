@@ -30,7 +30,7 @@ function [a] = tcoeffs(X,P,window,weight,nModes)
 
 dims        = size(X);
 nt          = dims(1);
-nGrid       = prod(dims(2:end));
+nGrid       = prod(dims(2:end));   
 window = window(:); weight = weight(:);
 
 
