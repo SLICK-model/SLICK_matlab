@@ -21,159 +21,100 @@ function [A1] = invtcoeffs(A,window,varargin)
 %   X = reshape(permute(reshape(squeeze(P(:,:,1:nModes)),size(A,1),size(P,2),size(A,2)),[2 3 1]),size(P,2),[])*A1;
 %
 %   Reference:
-%        [1] T. Chu, O. T. Schmidt, A stochastic SPOD-Koopman two-level
-%        model for turbulent flows.      (Under preparation)
+%        [1] T. Chu, O. T. Schmidt, Stochastic reduced-order Koopman model 
+%        for turbulent flows.    (Under preparation)
 
 
 % T. Chu (tchu72@gatech.edu; tic173@ucsd.edu), O. T. Schmidt (oschmidt@ucsd.edu)
-% Last revision:  04-Aug-2023 Tianyi Chu <tic173@ucsd.edu>
+% Last revision:  20-Aug-2023 Tianyi Chu <tchu72@gatech.edu>
 
-
-
-dims        = size(A);
-nt          = dims(3);
-nFreq       = dims(1);
-nModes      = dims(2);
-
+%% Reading parameters
+dims             =  size(A);
+nt               =  dims(3);
+nFreq            =  dims(1);
+nModes           =  dims(2);
+window           =  window(:);
 
 if nargin==3
-    reconst_opt = varargin{1};
+    reconst_opt  =  varargin{1};
 else
-    reconst_opt = 'center';
+    reconst_opt  =  'center';
 end
-
 if nargin==4
-    data_type = varargin{2};
+    data_type    =  varargin{2};
 else
-    data_type = 'real';
+    data_type    = 'real';
 end
-
-
-
-window = window(:);
-
-
 
 % default window size and type
 if length(window)==1
-    window  = hammwin(window);
+    window       =  hammwin(window);
 end
-nDFT        = length(window);
-winWeight   = 1/mean(window);
+nDFT             =  length(window);
+winWeight        =  1/mean(window);
+A                =  reshape(permute(A,[2 1 3]),[],nt);
+winCorr_fac      = winWeight/nDFT;
 
-
-A           = reshape(permute(A,[2 1 3]),[],nt);
-
-
-winCorr_fac= winWeight/nDFT;
-
-
+%%
 disp(' ')
 disp('Calculating expansion coefficients')
 disp('------------------------------------')
-
 A1 = [];
 
-
-
 for it = 1:nt
-    
     disp(['time ' num2str(it) '/' num2str(nt)])
-    
 
-    
+    % Reconstruction using the center snapshot
     if strcmpi(reconst_opt,'center')
-        
         if strcmpi(data_type,'real')
-            
             A1(:,it)  = transpose([ones(1,nModes) reshape([2*ones(nModes,1)]* exp(1i*2*pi*(nDFT/2+0)*([1:nDFT/2]/nDFT)),1,[] )]).*squeeze(A(1:(nDFT/2+1)*nModes, it))/nDFT;
-            
         elseif strcmpi(data_type,'complex')
-            
             A1(:,it)  = transpose([ reshape([1*ones(nModes,1)]* exp(1i*2*pi*(nDFT/2+0)*([0:nDFT-1]/nDFT)),1,[] )]).*squeeze(A(1:(nDFT)*nModes, it))/nDFT;
-            
         end
-        
     end
-    
-    
+
+    % Reconstruction using the full block
     if strcmpi(reconst_opt,'full')
-        
         if strcmpi(data_type,'real')
-            
             if it >= nDFT/2  &&  it <nt-nDFT/2+1
-                
-                Aj = 0;
-                
+                Aj               =     0;
                 for DT = -nDFT/2:nDFT/2-1
-                    
                     Aj           =     Aj +transpose([ones(1,nModes) reshape([2*ones(nModes,1)]* exp(1i*2*pi*(nDFT/2+DT)*([1:nDFT/2]/nDFT)),1,[] )]).*squeeze(A(1:(nDFT/2+1)*nModes, it-DT))/nDFT*winCorr_fac;
-                    
                 end
-                
-                A1(:,it)  = Aj;
-                
+                A1(:,it)         =     Aj;
             else
-                
-                A1(:,it)         =      transpose([ones(1,nModes) reshape([2*ones(nModes,1)]* exp(1i*2*pi*(nDFT/2+0)*([1:nDFT/2]/nDFT)),1,[] )]).*squeeze(A(1:(nDFT/2+1)*nModes, it))/nDFT;
-                
+                A1(:,it)         =     transpose([ones(1,nModes) reshape([2*ones(nModes,1)]* exp(1i*2*pi*(nDFT/2+0)*([1:nDFT/2]/nDFT)),1,[] )]).*squeeze(A(1:(nDFT/2+1)*nModes, it))/nDFT;
             end
-            
         elseif strcmpi(data_type,'complex')
-            
             if it >= nDFT/2  &&  it <nt-nDFT/2+1
-                
-                Aj = 0;
-                
+                Aj               =     0;
                 for DT = -nDFT/2:nDFT/2-1
-                    
                     Aj           =     Aj +transpose([ reshape([1*ones(nModes,1)]* exp(1i*2*pi*(nDFT/2+DT)*([0:nDFT-1]/nDFT)),1,[] )]).*squeeze(A(1:(nDFT)*nModes, it-DT))/nDFT*winCorr_fac;
-                    
                 end
-                
-                A1(:,it)  = Aj;
-                
+                A1(:,it)         =     Aj;
             else
-                
-                A1(:,it)         =      transpose([ reshape([1*ones(nModes,1)]* exp(1i*2*pi*(nDFT/2+0)*([0:nDFT-1]/nDFT)),1,[] )]).*squeeze(A(1:(nDFT)*nModes, it))/nDFT;
-                
+                A1(:,it)         =     transpose([ reshape([1*ones(nModes,1)]* exp(1i*2*pi*(nDFT/2+0)*([0:nDFT-1]/nDFT)),1,[] )]).*squeeze(A(1:(nDFT)*nModes, it))/nDFT;
             end
         end
-        
     end
-    
-    
+
+    % Reconstruction using the first-half of the block
     if strcmpi(reconst_opt,'firsthalf')
-        
         if strcmpi(data_type,'real')
-            
-            Aj = 0;
-            
+            Aj                   =     0;
             for DT = 0:min(nDFT/2-1,it-1)
-                
-                Aj           =     Aj +transpose([ones(1,nModes) reshape([2*ones(nModes,1)]* exp(1i*2*pi*(nDFT/2+DT)*([1:nDFT/2]/nDFT)),1,[] )]).*squeeze(A(1:(nDFT/2+1)*nModes, it-DT))/nDFT*winCorr_fac;
-                
+                Aj               =     Aj +transpose([ones(1,nModes) reshape([2*ones(nModes,1)]* exp(1i*2*pi*(nDFT/2+DT)*([1:nDFT/2]/nDFT)),1,[] )]).*squeeze(A(1:(nDFT/2+1)*nModes, it-DT))/nDFT*winCorr_fac;
             end
-            
-            A1(:,it)  = Aj*sum(window)/sum(window(nDFT/2+2-(1:length(0:min(nDFT/2-1,it-1)))));
-            
+            A1(:,it)             =     Aj*sum(window)/sum(window(nDFT/2+2-(1:length(0:min(nDFT/2-1,it-1)))));
         elseif strcmpi(data_type,'complex')
-            
-            Aj = 0;
-            
+            Aj                   =     0;
             for DT = 0:min(nDFT/2-1,it-1)
-                
-                Aj           =     Aj +transpose([ reshape([1*ones(nModes,1)]* exp(1i*2*pi*(nDFT/2+DT)*([0:nDFT-1]/nDFT)),1,[] )]).*squeeze(A(1:(nDFT)*nModes, it-DT))/nDFT*winCorr_fac;
-                
+                Aj               =     Aj +transpose([ reshape([1*ones(nModes,1)]* exp(1i*2*pi*(nDFT/2+DT)*([0:nDFT-1]/nDFT)),1,[] )]).*squeeze(A(1:(nDFT)*nModes, it-DT))/nDFT*winCorr_fac;
             end
-            
-            
-            A1(:,it)  = Aj*sum(window)/sum(window(nDFT/2+2-(1:length(0:min(nDFT/2-1,it-1)))));
-            
+            A1(:,it)             =     Aj*sum(window)/sum(window(nDFT/2+2-(1:length(0:min(nDFT/2-1,it-1)))));
         end
-        
     end
-    
+
 end
 
 end
