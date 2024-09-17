@@ -7,7 +7,7 @@
 
 
 % T. Chu (tchu72@gatech.edu; tic173@ucsd.edu), O. T. Schmidt (oschmidt@ucsd.edu)
-% Last revision:  12-Aug-2024 Tianyi Chu <tchu72@gatech.edu; tic173@ucsd.edu>
+% Last revision:  16-Sept-2024 Tianyi Chu <tchu72@gatech.edu; tic173@ucsd.edu>
 
 
 
@@ -60,7 +60,7 @@ plot_overview;
  t_remove            =   25;                        %   Removal of the dataset; not necessary
  shift               =   100;                       %   Starting point of the training set
  
-[K_y,G,Y_0]          =   SLICK(A, dt, nt_train, gamma1, gamma2, t_remove, shift, 'complex' );
+[T,G,Y_0]          =   SLICK(A, dt, nt_train, gamma1, gamma2, t_remove, shift, 'complex' );
 
  
  %%  Simulations for hindcast
@@ -70,7 +70,7 @@ plot_overview;
  y0                  =   Y_0(:,it0+shift);
  t_span              =   400;
  
- [Y_mc]              =   SLICK_simulation(K_y, G, y0, dt, Nf, M_n,  t_span, k_max);
+ [Y_mc]              =   SLICK_simulation(T, G, y0, dt, Nf, M_n,  t_span, k_max);
  [A_data]            =   invtcoeffs( permute(reshape((Y_0(1:(Nf)*M_n,(1: t_span)+it0-1+shift)),M_n,Nf,[]),[2 1 3]),window,'firsthalf','complex');
 
  clear A_model;
@@ -89,7 +89,7 @@ end
  it0                 =   size(X,2)-t_remove;         %   Initial condition: last data point of the test set
  y0                  =   Y_0(:,it0+shift);
  t_span              =   400;
- [Y_mc]              =   SLICK_simulation(K_y, G, y0, dt, Nf, M_n, t_span, k_max);
+ [Y_mc]              =   SLICK_simulation(T, G, y0, dt, Nf, M_n, t_span, k_max);
  [A_data]            =   invtcoeffs( permute(reshape((Y_0(1:(Nf)*M_n,(1:t_span)+it0-1+shift)),M_n,Nf,[]),[2 1 3]),window,'firsthalf','complex');
 
  clear A_model;

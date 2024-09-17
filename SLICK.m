@@ -1,4 +1,4 @@
-function [K_y,G,Y_0] = SLICK(A, dt, nt_train, gamma1, gamma2, t_remove, shift, varargin )
+function [T,G,Y_0] = SLICK(A, dt, nt_train, gamma1, gamma2, t_remove, shift, varargin )
 
 %%  Stochastic Low-dimensional Inflated Convolutional Koopman model (SLICK)  
 
@@ -13,7 +13,7 @@ function [K_y,G,Y_0] = SLICK(A, dt, nt_train, gamma1, gamma2, t_remove, shift, v
 
 %      Outputs:  
 %
-%          K_y:  Inflated Koopman operator
+%            T:  State transition matrix
 %            G:  De-whitening filter
 %          Y_0:  All the inflated state vectors
 
@@ -26,7 +26,7 @@ function [K_y,G,Y_0] = SLICK(A, dt, nt_train, gamma1, gamma2, t_remove, shift, v
 
 
 % T. Chu (tchu72@gatech.edu), O. T. Schmidt (oschmidt@ucsd.edu)
-% Last revision:  12-Aug-2024 Tianyi Chu <tchu72@gatech.edu>
+% Last revision:  16-Sept-2024 Tianyi Chu <tchu72@gatech.edu>
 
 
 %%
@@ -100,7 +100,7 @@ end
     
  M                   =   dbdt(:,(1:e_L)+t_remove+shift )* (Y_1'/(Y_1*Y_1'+gamma2*speye((Nf)*M_n*2) ) );
  
- K_y                 =   [K1  eye(length(K1)); M];     % Inflated Koopman operator
+ K_y                 =   [K1  eye(length(K1)); M];     % Inflated Koopman operator     
  
  %% De-whitening filetr constructions, Eqns(3.5-3.12)
  

@@ -1,4 +1,4 @@
-function [Y_mc] = SLICK_simulation(K_y, G, y0, dt, Nf, M_n, nt, k_max)
+function [Y_mc] = SLICK_simulation(T, G, y0, dt, Nf, M_n, nt, k_max)
 
 %%
 
@@ -49,7 +49,7 @@ for k = 1:k_max
             [ n1, seed ] = r8_normal_01 ( seed );
             w1(j) = n1 * sqrt ( 1 / (dt));
         end
-         Y0(:,it+1)=Y0(:,it)+(K_y*Y0(:,it)  + 1* g*w1)*(dt);
+         Y0(:,it+1)=T*Y0(:,it)+ g*w1*(dt);
         
     end
     
