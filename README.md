@@ -1,7 +1,7 @@
 # The Stochastic Low-dimensional Inflated Convolutional Koopman model (SLICK)
 
 A stochastic data-driven reduced-order model applicable to a wide range of turbulent natural and engineering flows is presented. 
-Combining ideas from Koopman theory and spectral model order reduction, the stochastic low-dimensional inflated convolutional Koopman model (SLICK) accurately forecasts short-time transient dynamics while preserving long-term statistical properties. A discrete Koopman operator is used to evolve convolutional coordinates that govern the temporal dynamics of spectral orthogonal modes, which in turn represent the energetically most salient large-scale coherent flow structures. Turbulence closure is achieved in two steps: first, by inflating the convolutional coordinates to incorporate nonlinear interactions between different scales, and second, by modeling the residual error as a stochastic source. An empirical dewhitening filter informed by the data is used to maintain the second-order flow statistics within the long-time limit. SLICK is predictive over time horizons indicated by a detailed error analysis and integrates stably over arbitrary time horizons, generating realistic surrogate data. 
+Combining ideas from Koopman theory and spectral model order reduction, the stochastic low-dimensional inflated convolutional Koopman model (SLICK) accurately forecasts short-time transient dynamics while preserving long-term statistical properties. 
 
 ## Model-order reduction
 
@@ -41,7 +41,10 @@ A graphical summary of the stochastic low-dimensional inflated convolutional Koo
 * Collecting data as equally sampled snapshots,
 * Performing model-order reduction and Fourier convolution,
 * Training the SLICK model.
+  
+A discrete Koopman operator is used to evolve convolutional coordinates that govern the temporal dynamics of spectral orthogonal modes, which in turn represent the energetically most salient large-scale coherent flow structures. Turbulence closure is achieved in two steps: first, by inflating the convolutional coordinates to incorporate nonlinear interactions between different scales, and second, by modeling the residual error as a stochastic source. An empirical dewhitening filter informed by the data is used to maintain the second-order flow statistics within the long-time limit.
 
+SLICK is predictive over time horizons indicated by a detailed error analysis and integrates stably over arbitrary time horizons, generating realistic surrogate data.
 The turbulent open cavity flow is demonstrated as an example. 
 While the model encompasses complex concepts, it can be formulated using a simple discrete-time algorithm.
 
